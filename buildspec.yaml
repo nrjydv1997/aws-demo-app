@@ -14,8 +14,8 @@ phases:
   post_build:
     commands:
       - echo "Starting NGINX service..."
-      - sudo systemctl enable nginx
-      - sudo systemctl start nginx
+      - sudo nginx -s stop
+      - sudo nginx -s reload
       - echo "Build and setup complete!"
 artifacts:
   files:
