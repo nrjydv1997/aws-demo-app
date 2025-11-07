@@ -3,17 +3,20 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing NGINX
-      - sudo apt-get update
-      - eudo apt-get install nginx -y
+      - echo "Installing NGINX on Amazon Linux..."
+      - sudo yum update -y
+      - sudo yum install -y nginx
   build:
     commands:
-      - echo Build started on `date`
-      - cp index.html /var/www/html/
-    
+      - echo "Build started on $(date)"
+      - echo "Copying index.html to NGINX web root..."
+      - sudo cp index.html /usr/share/nginx/html/
   post_build:
     commands:
-      - echo Configuring NGINX
+      - echo "Starting NGINX service..."
+      - sudo systemctl enable nginx
+      - sudo systemctl start nginx
+      - echo "Build and setup complete!"
 artifacts:
   files:
-    - /var/www/html/index.html
+    - /usr/share/nginx/html/index.html
