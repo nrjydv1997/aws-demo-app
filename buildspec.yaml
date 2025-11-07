@@ -14,8 +14,7 @@ phases:
   post_build:
     commands:
       - echo "Starting NGINX service..."
-      - sudo nginx -s stop
-      - sudo nginx -s reload
+      - sudo nginx
       - echo "Build and setup complete!"
 artifacts:
   files:
